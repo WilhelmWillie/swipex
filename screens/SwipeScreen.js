@@ -34,7 +34,8 @@ export default class SwipeScreen extends Component {
     modalVisible: false,
     detailVisible: false,
     cards: [],
-    liked: []
+    liked: [],
+    nextStartIndex: 1
   }
 
   getNewCards = () => {
@@ -42,13 +43,16 @@ export default class SwipeScreen extends Component {
     const base = 'https://www.googleapis.com/customsearch/v1'
     const cx = Keys.googleImagesCx
     const apiKey = Keys.googleImagesApiKey
-    const imagesUrl = `${base}?q=${this.state.x}&cx=${cx}&searchType=image&key=${apiKey}`
+    const imagesUrl = `${base}?q=${this.state.x}&cx=${cx}&searchType=image&start=${this.state.nextStartIndex}&key=${apiKey}`
 
     fetch(imagesUrl)
       .then(response => response.json())
       .then(responseJson => {
+        console.log(responseJson)
+
         this.setState({
-          cards: responseJson.items
+          cards: responseJson.items,
+          nextStartIndex: responseJson.queries.nextPage[0].startIndex
         })
       });
   }
@@ -83,6 +87,10 @@ export default class SwipeScreen extends Component {
       cards: cards,
       liked: liked
     })
+
+    if (cards.length === 0) {
+      this.getNewCards()
+    }
   }
 
   gotoLikes = () => {
