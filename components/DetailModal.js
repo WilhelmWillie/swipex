@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet, 
+import {
+  StyleSheet,
   Text,
-  Modal, 
-  View, 
+  Modal,
+  View,
   Image,
   ScrollView,
   TouchableHighlight,
@@ -29,33 +29,33 @@ export default class DetailModal extends Component {
               <Image
                 style={[styles.image, {width: card.image.width, height: card.image.height}]}
                 source={{uri: card.link}}
-                resizeMode='cover' 
+                resizeMode='contain'
               />
-            </View> 
+            </View>
 
             <Text style={styles.title}>{card.title}</Text>
 
             <TouchableHighlight
-              onPress={() => { 
-                Linking.openURL(card.link) 
+              onPress={() => {
+                Linking.openURL(card.link)
               }}
-            >  
+            >
               <Text>Open URL</Text>
             </TouchableHighlight>
 
-            
+
           </View>
         </ScrollView>
 
-        <TouchableHighlight 
+        <TouchableHighlight
           style={styles.closeDetail}
           onPress={this.props.toggleDetail}
         >
-          <Text>ｘ</Text>
+          <Text></Text>
         </TouchableHighlight>
       </Modal>
     );
-  } 
+  }
 }
 
 const styles = StyleSheet.create({
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 30
   },
-  card: {  
+  card: {
     flex: 1,
     height: 500,
     width: '100%',
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
     right: 20,
     position: 'absolute'
   }
-}); 
+});

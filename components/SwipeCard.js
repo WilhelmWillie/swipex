@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet, 
+import {
+  StyleSheet,
   Text,
   View,
   Image,
@@ -24,12 +24,12 @@ export default class SwipeCard extends Component {
             style={[styles.image, {width: card.image.width, height: card.image.height}]}
             source={{uri: card.link}}
             key={card.link}
-            resizeMode='contain' 
+            resizeMode='cover' 
           />
         </View>
       </TouchableWithoutFeedback>
     );
-  } 
+  }
 }
 
 const styles = StyleSheet.create({
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#393E41'
   }
-}); 
+});
