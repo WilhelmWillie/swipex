@@ -30,8 +30,8 @@ export default class SwipeScreen extends Component {
   }
 
   state = {
-    x: undefined,
-    modalVisible: true,
+    x: 'Car',
+    modalVisible: false,
     detailVisible: false,
     cards: [],
     liked: []
@@ -43,7 +43,7 @@ export default class SwipeScreen extends Component {
     const cx = Keys.googleImagesCx
     const apiKey = Keys.googleImagesApiKey
     const imagesUrl = `${base}?q=${this.state.x}&cx=${cx}&searchType=image&key=${apiKey}`
-  
+
     fetch(imagesUrl)
       .then(response => response.json())
       .then(responseJson => {
@@ -60,6 +60,7 @@ export default class SwipeScreen extends Component {
   }
 
   toggleModal = () => {
+    console.log('holler')
     this.setState({
       modalVisible: !this.state.modalVisible
     });
@@ -100,7 +101,7 @@ export default class SwipeScreen extends Component {
     return (
       <View style={styles.container}>
         <GetXModal
-          modalVisible={this.state.modalVisible} 
+          modalVisible={this.state.modalVisible}
           toggleModal={this.toggleModal}
           updateX={this.updateX}
         />
@@ -108,12 +109,12 @@ export default class SwipeScreen extends Component {
         <DetailModal
           detailVisible={this.state.detailVisible}
           toggleDetail={this.toggleDetail}
-          card={this.state.cards[this.state.cards.length-1]} 
+          card={this.state.cards[this.state.cards.length-1]}
         />
 
         <View style={styles.card}>
-          <SwipeCard 
-            card={this.state.cards[this.state.cards.length-1]} 
+          <SwipeCard
+            card={this.state.cards[this.state.cards.length-1]}
             handleTap={this.toggleDetail}
           />
         </View>
@@ -174,4 +175,4 @@ const styles = StyleSheet.create({
     lineHeight: 64,
     fontSize: 24
   }
-}); 
+});
