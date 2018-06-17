@@ -49,7 +49,7 @@ export default class DetailModal extends Component {
 
         <TouchableHighlight
           style={styles.closeDetail}
-          onPress={this.props.toggleDetail}
+          onPress={this.props.closeDetail}
         >
           <Text></Text>
         </TouchableHighlight>

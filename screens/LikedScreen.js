@@ -38,9 +38,9 @@ export default class LikedScreen extends Component {
     })
   }
 
-  toggleDetail = () => {
+  closeDetail = () => {
     this.setState({
-      detailVisible: !this.state.detailVisible
+      detailVisible: false
     })
   }
 
@@ -51,7 +51,7 @@ export default class LikedScreen extends Component {
       <View style={styles.container}>
         <DetailModal
           detailVisible={this.state.detailVisible}
-          toggleDetail={this.toggleDetail}
+          closeDetail={this.closeDetail}
           card={this.state.detailCard}
         />
 

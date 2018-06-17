@@ -21,7 +21,7 @@ export default class SwipeCard extends Component {
       >
         <View style={styles.card}>
           <Image
-            style={[styles.image, {width: card.image.width, height: card.image.height}]}
+            style={styles.image}
             source={{uri: card.link}}
             key={card.link}
             resizeMode='cover'
@@ -40,15 +40,20 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     height: '100%',
-    width: '100%',
+    width: '80%',
     shadowColor: '#000000',
+    shadowOffset: {width: 3, height: 3},
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
     borderRadius: 5,
     overflow: 'hidden'
   },
   image: {
     flex: 1,
     alignSelf: 'center',
-    backgroundColor: '#393E41'
+    backgroundColor: '#393E41',
+    width: 300,
+    height: 300
   },
   textContainer: {
     padding: 15,

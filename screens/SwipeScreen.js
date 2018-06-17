@@ -11,6 +11,8 @@ import {
 import GetXModal from '../components/GetXModal'
 import DetailModal from '../components/DetailModal'
 import SwipeCard from '../components/SwipeCard'
+import SwipeCards from 'react-native-swipe-cards'
+
 import Keys from '../config/ApiKeys'
 
 export default class SwipeScreen extends Component {
@@ -43,6 +45,7 @@ export default class SwipeScreen extends Component {
     detailVisible: false,
     cards: [],
     liked: [],
+    cardDetail: undefined,
     nextStartIndex: 1
   }
 
@@ -56,6 +59,7 @@ export default class SwipeScreen extends Component {
     fetch(imagesUrl)
       .then(response => response.json())
       .then(responseJson => {
+        const cards = this.state.cards
         this.setState({
           cards: responseJson.items,
           nextStartIndex: responseJson.queries.nextPage[0].startIndex
@@ -75,38 +79,36 @@ export default class SwipeScreen extends Component {
     })
   }
 
-  toggleDetail = () => {
+  toggleDetail = (card) => {
     this.setState({
       detailVisible: !this.state.detailVisible
     })
   }
 
-  like = () => {
-    const cards = this.state.cards
-    const likedCard = cards.pop()
+  openDetail = (card) => {
+    this.setState({
+      cardDetail: card,
+      detailVisible: true
+    })
+  }
 
+  closeDetail = () => {
+    this.setState({
+      detailVisible: false
+    })
+  }
+
+  like = (likedCard) => {
     const liked = this.state.liked
     liked.push(likedCard)
 
     this.setState({
-      cards: cards,
       liked: liked
     })
-
-    if (cards.length === 0) {
-      this.getNewCards()
-    }
   }
 
-  dislike = () => {
-    const cards = this.state.cards
-    cards.pop()
-
-    this.setState({
-      cards: cards
-    })
-
-    if (cards.length === 0) {
+  cardRemoved = (index) => {
+    if (this.state.cards.length - index == 1) {
       this.getNewCards()
     }
   }
@@ -133,25 +135,32 @@ export default class SwipeScreen extends Component {
 
         <DetailModal
           detailVisible={this.state.detailVisible}
-          toggleDetail={this.toggleDetail}
-          card={this.state.cards[this.state.cards.length-1]}
+          closeDetail={this.closeDetail}
+          card={this.state.cardDetail}
         />
 
-        <View style={styles.card}>
-          <SwipeCard
-            card={this.state.cards[this.state.cards.length-1]}
-            handleTap={this.toggleDetail}
+        <View style={styles.cardContainer}>
+          <SwipeCards
+            cards={this.state.cards}
+            loop={true}
+
+            renderCard={(card) => (
+              <SwipeCard
+                card={card}
+                handleTap={() => {
+                  this.openDetail(card)
+                }}
+              />
+            )}
+
+            renderNoMoreCards={() => (
+              <Text>No more cards</Text>
+            )}
+
+            handleYup={this.like}
+
+            cardRemoved={this.cardRemoved}
           />
-        </View>
-
-        <View style={styles.actions}>
-          <TouchableHighlight style={styles.dislike} onPress={this.dislike}>
-            <Text style={styles.buttonText}>👎</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight style={styles.like} onPress={this.like}>
-            <Text style={styles.buttonText}>👍</Text>
-          </TouchableHighlight>
         </View>
       </View>
     )
@@ -166,33 +175,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  card: {
-    height: '80%',
+  cardContainer: {
+    height: '100%',
     width: '100%'
-  },
-  actions: {
-    flexBasis: 50,
-    paddingTop: 20,
-    width: '80%',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
-  dislike: {
-    flexBasis: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: '#E94F37',
-    alignItems: 'center',
-    overflow: 'hidden'
-  },
-  like: {
-    flexBasis: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: 'green',
-    alignItems: 'center',
-    overflow: 'hidden'
   },
   buttonText: {
     textAlign: 'center',
