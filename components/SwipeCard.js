@@ -26,6 +26,10 @@ export default class SwipeCard extends Component {
             key={card.link}
             resizeMode='cover'
           />
+
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{card.title}</Text>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     )
@@ -37,8 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    borderColor: '#393E41',
-    borderWidth: 1,
+    shadowColor: '#000000',
     borderRadius: 5,
     overflow: 'hidden'
   },
@@ -46,5 +49,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     backgroundColor: '#393E41'
+  },
+  textContainer: {
+    padding: 15,
+    backgroundColor: '#ffffff'
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: '600'
   }
 })

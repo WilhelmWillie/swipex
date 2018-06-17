@@ -83,8 +83,9 @@ const styles = StyleSheet.create({
   },
   getXModal: {
     flex: 1,
+    paddingTop: 75,
     backgroundColor: '#427AA1',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignContent: 'center'
   },
   xInput: {
