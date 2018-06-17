@@ -18,6 +18,14 @@ export default class SwipeScreen extends Component {
     const {params = {}} = navigation.state
     return {
       title: 'SwipeX',
+      headerLeft: (
+        <Button
+          title='New X'
+          onPress={() => {
+            params.getNewX()
+          }}
+        />
+      ),
       headerRight: (
         <Button
           title='Likes'
@@ -30,8 +38,8 @@ export default class SwipeScreen extends Component {
   }
 
   state = {
-    x: 'Car',
-    modalVisible: false,
+    x: '',
+    modalVisible: true,
     detailVisible: false,
     cards: [],
     liked: [],
@@ -97,10 +105,9 @@ export default class SwipeScreen extends Component {
   }
 
   componentDidMount() {
-    this.getNewCards()
-
     this.props.navigation.setParams({
-      gotoLikes: this.gotoLikes
+      gotoLikes: this.gotoLikes,
+      getNewX: this.toggleModal
     })
   }
 
