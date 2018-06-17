@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableWithoutFeedback
-} from 'react-native';
+} from 'react-native'
 
 export default class LikedItem extends Component {
-  render() {
+  render () {
     const item = this.props.item
 
     return (
@@ -26,7 +26,7 @@ export default class LikedItem extends Component {
           </View>
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }
 
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     width: '100%',
-    height: 'auto',
+    height: 'auto'
   }
-});
+})

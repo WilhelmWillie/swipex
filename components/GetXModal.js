@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet, 
+import {
+  StyleSheet,
   Text,
-  Modal, 
-  View, 
-  TextInput, 
-  TouchableHighlight 
-} from 'react-native';
+  Modal,
+  View,
+  TextInput,
+  TouchableHighlight
+} from 'react-native'
 
 export default class GetXModal extends Component {
   state = {
@@ -27,18 +27,18 @@ export default class GetXModal extends Component {
             Get started with SwipeX by inputting what you want to swipe for
           </Text>
 
-          <TextInput 
+          <TextInput
             placeholder='Dogs, cats, cars...'
             style={xInputStyle}
-            value={this.state.newTermInput} 
+            value={this.state.newTermInput}
             onChangeText={(text) => {
               this.setState({
                 getXInput: text
-              });
+              })
             }}
           />
 
-          <TouchableHighlight 
+          <TouchableHighlight
             style={styles.setXButton}
             underlayColor='#E94F37'
             onPress={
@@ -53,7 +53,7 @@ export default class GetXModal extends Component {
                 } else {
                   this.setState({
                     invalidInput: true
-                  });
+                  })
                 }
               }
             }
@@ -62,8 +62,8 @@ export default class GetXModal extends Component {
           </TouchableHighlight>
         </View>
       </Modal>
-    );
-  } 
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700'
   }
-}); 
+})

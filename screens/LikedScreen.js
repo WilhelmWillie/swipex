@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   FlatList
-} from 'react-native';
+} from 'react-native'
 
 import DetailModal from '../components/DetailModal'
 import LikedItem from '../components/LikedItem'
@@ -69,4 +69,4 @@ export default class LikedScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-});
+})

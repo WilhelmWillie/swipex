@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableWithoutFeedback
-} from 'react-native';
+} from 'react-native'
 
 export default class SwipeCard extends Component {
-  render() {
+  render () {
     const card = this.props.card
 
     if (card === undefined) {
-      return (<View></View>)
+      return (<View />)
     }
 
     return (
@@ -24,11 +24,11 @@ export default class SwipeCard extends Component {
             style={[styles.image, {width: card.image.width, height: card.image.height}]}
             source={{uri: card.link}}
             key={card.link}
-            resizeMode='cover' 
+            resizeMode='cover'
           />
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }
 
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#393E41'
   }
-});
+})

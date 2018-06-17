@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Button,
   StyleSheet
-} from 'react-native';
+} from 'react-native'
 
 import GetXModal from '../components/GetXModal'
 import DetailModal from '../components/DetailModal'
@@ -56,25 +56,23 @@ export default class SwipeScreen extends Component {
     fetch(imagesUrl)
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
-
         this.setState({
           cards: responseJson.items,
           nextStartIndex: responseJson.queries.nextPage[0].startIndex
         })
-      });
+      })
   }
 
   updateX = (newX) => {
     this.setState({
       x: newX
-    }, this.getNewCards);
+    }, this.getNewCards)
   }
 
   toggleModal = () => {
     this.setState({
       modalVisible: !this.state.modalVisible
-    });
+    })
   }
 
   toggleDetail = () => {
@@ -189,4 +187,4 @@ const styles = StyleSheet.create({
     lineHeight: 64,
     fontSize: 24
   }
-});
+})

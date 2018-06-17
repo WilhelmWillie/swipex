@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableHighlight,
   Linking
-} from 'react-native';
+} from 'react-native'
 
 export default class DetailModal extends Component {
   state = {
@@ -54,7 +54,7 @@ export default class DetailModal extends Component {
           <Text></Text>
         </TouchableHighlight>
       </Modal>
-    );
+    )
   }
 }
 
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
     right: 20,
     position: 'absolute'
   }
-});
+})
