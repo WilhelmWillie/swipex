@@ -45,7 +45,7 @@ export default class LikedScreen extends Component {
   }
 
   render() {
-    const liked = this.props.navigation.getParam('liked')
+    const liked = this.props.navigation.getParam('liked').reverse()
 
     return (
       <View style={styles.container}>
