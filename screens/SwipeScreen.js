@@ -64,7 +64,6 @@ export default class SwipeScreen extends Component {
   }
 
   toggleModal = () => {
-    console.log('holler')
     this.setState({
       modalVisible: !this.state.modalVisible
     });

@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 export default class LikedItem extends Component {
@@ -11,18 +12,20 @@ export default class LikedItem extends Component {
     const item = this.props.item
 
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{uri: item.link}}
-          key={item.link}
-          resizeMode='cover'
-        />
+      <TouchableWithoutFeedback onPress={this.props.viewDetail}>
+        <View style={styles.container}>
+          <Image
+            style={styles.image}
+            source={{uri: item.link}}
+            key={item.link}
+            resizeMode='cover'
+          />
 
-        <View style={styles.text}>
-          <Text>{item.title}</Text>
+          <View style={styles.text}>
+            <Text>{item.title}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
