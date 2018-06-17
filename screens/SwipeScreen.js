@@ -82,15 +82,28 @@ export default class SwipeScreen extends Component {
   }
 
   like = () => {
-    const cards = this.state.cards;
-    const likedCard = cards.pop();
+    const cards = this.state.cards
+    const likedCard = cards.pop()
 
-    const liked = this.state.liked;
-    liked.push(likedCard);
+    const liked = this.state.liked
+    liked.push(likedCard)
 
     this.setState({
       cards: cards,
       liked: liked
+    })
+
+    if (cards.length === 0) {
+      this.getNewCards()
+    }
+  }
+
+  dislike = () => {
+    const cards = this.state.cards
+    cards.pop()
+
+    this.setState({
+      cards: cards
     })
 
     if (cards.length === 0) {
@@ -132,7 +145,7 @@ export default class SwipeScreen extends Component {
         </View>
 
         <View style={styles.actions}>
-          <TouchableHighlight style={styles.dislike} onPress={this.like}>
+          <TouchableHighlight style={styles.dislike} onPress={this.dislike}>
             <Text style={styles.buttonText}>👎</Text>
           </TouchableHighlight>
 
